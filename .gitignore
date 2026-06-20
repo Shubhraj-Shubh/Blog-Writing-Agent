@@ -1,0 +1,13 @@
+# Environments
+.env
+.venv/
+venv/
+__pycache__/
+
+# Output folders
+images/
+*.zip
+*.md
+
+# OS files
+.DS_Store
