@@ -57,6 +57,9 @@ Create a .env file in the root directory of your project. You will need the foll
 | TAVILY_API_KEY	| Web Research	| Tavily Developer Portal |
 | SUPABASE_URL	| Saving Past Blogs	| Supabase Project Settings |
 | SUPABASE_KEY	| Saving Past Blogs	| Supabase Project Settings |
+| LANGCHAIN_TRACING_V2	| Enable LangSmith Tracing | Set to `"true"` |
+| LANGCHAIN_API_KEY	| Connecting to LangSmith | LangSmith Dashboard |
+| LANGCHAIN_PROJECT	| LangSmith Project Name | Custom Name (e.g., `"blog-writing-agent"`) |
 
 ## Example .env format:
 
@@ -65,6 +68,9 @@ GEMINI_API_KEY="your_google_gemini_api_key"
 TAVILY_API_KEY="your_tavily_api_key"
 SUPABASE_URL="your_supabase_project_url"
 SUPABASE_KEY="your_supabase_anon_key"
+LANGCHAIN_TRACING_V2="true"
+LANGCHAIN_API_KEY="your_langsmith_api_key"
+LANGCHAIN_PROJECT="your_custom_project_name"
 ```
 
 ### 5. Run the Application
