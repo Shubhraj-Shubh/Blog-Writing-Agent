@@ -289,15 +289,18 @@ if "last_out" not in st.session_state:
     st.session_state["last_out"] = None
 
 # Layout
-tab_plan, tab_evidence, tab_preview, tab_images, tab_logs = st.tabs(
-    ["🧩 Plan", "🔎 Evidence", "📝 Markdown Preview", "🖼️ Images", "🧾 Logs"]
+# tab_plan, tab_evidence, tab_preview, tab_images, tab_logs = st.tabs(
+#     ["🧩 Plan", "🔎 Evidence", "📝 Markdown Preview", "🖼️ Images", "🧾 Logs"]
+# )
+tab_plan, tab_evidence, tab_preview, tab_images = st.tabs(
+    ["🧩 Plan", "🔎 Evidence", "📝 Markdown Preview", "🖼️ Images"]
 )
 
-logs: List[str] = []
+# logs: List[str] = []
 
 
-def log(msg: str):
-    logs.append(msg)
+# def log(msg: str):
+#     logs.append(msg)
 
 
 if run_btn:
@@ -349,13 +352,13 @@ if run_btn:
             }
             progress_area.json(summary)
 
-            log(f"[{kind}] {json.dumps(payload, default=str)[:1200]}")
+            # log(f"[{kind}] {json.dumps(payload, default=str)[:1200]}")
 
         elif kind == "final":
             out = payload
             st.session_state["last_out"] = out
             status.update(label="✅ Done", state="complete", expanded=False)
-            log("[final] received final state")
+            # log("[final] received final state")
 
 # Render last result (if any)
 out = st.session_state.get("last_out")
@@ -487,13 +490,13 @@ if out:
                     )
 
     # --- Logs tab ---
-    with tab_logs:
-        st.subheader("Logs")
-        if "logs" not in st.session_state:
-            st.session_state["logs"] = []
-        if logs:
-            st.session_state["logs"].extend(logs)
+    # with tab_logs:
+    #     st.subheader("Logs")
+    #     if "logs" not in st.session_state:
+    #         st.session_state["logs"] = []
+    #     if logs:
+    #         st.session_state["logs"].extend(logs)
 
-        st.text_area("Event log", value="\n\n".join(st.session_state["logs"][-80:]), height=520)
+    #     st.text_area("Event log", value="\n\n".join(st.session_state["logs"][-80:]), height=520)
 else:
     st.info("Enter a topic and click **Generate Blog**.")
