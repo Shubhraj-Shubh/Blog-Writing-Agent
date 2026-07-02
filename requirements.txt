@@ -11,4 +11,5 @@ google-generativeai
 supabase
 langchain-groq
 langchain-tavily
+tavily-python
 langsmith

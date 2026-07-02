@@ -57,9 +57,16 @@ def _tavily_search(query: str, max_results: int = 5) -> List[dict]:
     if not os.getenv("TAVILY_API_KEY"):
         return []
     try:
-        from langchain_tavily import TavilySearchResults
-        tool = TavilySearchResults(max_results=max_results)
-        results = tool.invoke({"query": query})
+        # from langchain_tavily import TavilySearchResults
+        # tool = TavilySearchResults(max_results=max_results)
+        # results = tool.invoke({"query": query})
+        # results = tool.invoke(query)
+
+        from tavily import TavilyClient
+        client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+        response = client.search(query=query, max_results=max_results)
+        results = response.get("results", [])
+
         out: List[dict] = []
         for r in results or []:
             out.append({
@@ -70,7 +77,8 @@ def _tavily_search(query: str, max_results: int = 5) -> List[dict]:
                 "source": r.get("source"),
             })
         return out
-    except Exception:
+    except Exception as e:
+        print(f"❌ Tavily Search Exception for query '{query}': {e}")
         return []
 
 def _iso_to_date(s: Optional[str]) -> Optional[date]:
